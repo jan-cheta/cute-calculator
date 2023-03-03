@@ -1,30 +1,271 @@
-<!DOCTYPE html>
-<html lang=en>
-	<head>
-		<meta charset = "utf-8"/>
-		<title>Practice Site</title>
-		<meta name="description" content="An example html site"/>
-		<meta name="author" content="Jan Ryan Ancheta"/>
+<html>
+<head>
+	
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 		
-		<!-- This connects your CSS stylesheet -->
-		<link rel="stylesheet" href="style.css"/>
-	</head>
-	<body>
-        <div class="container">
-            <h1>My Practice Webpage (HTML)</h1>
-            <p>My name is Jan, and I'm learning to code because I am broke.</p>
-            <p><a href="https://www.instagram.com/cheta._.j/">
-                Here is my Instragram profile</a>, and here are a few 
-                things about me</p>
-            <ul>
-                <li>I enjoy coding because it might make me money.</li>
-                <li>I like making music as it is my outlet.</li>
-                <li>I go to the gym to ease my anxiety.</li>
-            </ul>
+		*{
+		font-family: 'Roboto', sans-serif;
+		}
 
-            <p>Here's a picture of me</p>
-            <img src="./assets/test.JPG" alt="me" width="250">
-        </div>
-    </body>
+		body{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background-color: #3D426B;
+		}
+
+		.container{
+		box-sizing: border-box;
+		border:1px solid black;
+		
+		padding-left: 0px;
+		padding-right: 0px;
+		padding-top: 10px;
+		padding-bottom: 10px;
+
+		background-color:black;
+		border-radius: 5%
+		}
+	
+		.numPad{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		}
+		
+		.disp{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin-top: 20px;
+		margin-bottom: 10px;
+		}
+
+		#result-box{
+		width:70%;
+		font-size:20px;
+		height: 50px;
+		background-color:#3D426B;
+		color: white;
+		box-shadow:none;
+		}
+
+		.numPad input{
+		background-color: black;
+		border:1px solid #58ABAE;
+		color: white;
+		
+		padding-left: 10px;
+		padding-right: 10px;
+		padding-top: 5px;
+		padding-bottom: 5px;
+
+		margin:2px;
+				
+		width: 30px;
+		font-size:20px;
+		}
+	</style>	
+</head>
+<body>
+	<div class='container'>
+		<div class='disp'>
+			<input type='text' id='result-box' READONLY><br>
+		</div>
+		<table class = 'numPad'>
+			
+			<tr>
+				<th><input type='button' onclick='removeAll()' value='c'></th>
+				<th><input type='button' onclick='backspace()' value='<'></th>
+				<th></th>
+				<th><input type='button' onclick='divideNumbers()'value='/'></th>
+			</tr>
+			
+			<tr>
+				<th><input id='num7Button' type='button' onclick='num7()' value='7'></th>
+				<th><input id='num8Button' type='button' onclick='num8()' value='8'></th>
+				<th><input id='num9Button' type='button' onclick='num9()' value='9'></th>
+				<th><input type='button' onclick='addNumbers()' value='+'></th>
+			</tr>
+		
+		
+			<tr>
+				<th><input id='num4Button' type='button' onclick='num4()' value='4'></th>
+				<th><input id='num5Button' type='button' onclick='num5()' value='5'></th>
+				<th><input id='num6Button' type='button' onclick='num6()' value='6'></th>
+				<th><input type='button' onclick='minusNumbers()' value='-'></th>
+			
+			</tr>
+
+			<tr>
+				<th><input id='num1Button' type='button' onclick='num1()' value='1'></th>
+				<th><input id='num2Button' type='button' onclick='num2()' value='2'></th>
+				<th><input id='num3Button' type='button' onclick='num3()' value='3'></th>
+				<th><input type='button' onclick='multiplyNumbers()' value='*'></th>
+			</tr>
+		
+		
+			<tr>
+				<th><input id='num0Button' type='button' onclick='num0()' value='0'></th>
+				<th></th>
+				<th></th>
+				<th><input type='button' onclick='answer()' value='='></th>
+			</tr>
+		</table>
+	</div>
+	<script>
+		var displayBox = document.querySelector('#result-box');
+		var firstAttempt = true;
+		var firstNum = 0, secondNum = 0;
+		var operate = '';
+
+		function removeAll(){
+		displayBox.value='';
+		firstAttempt = true;
+		firstNum = 0;
+		secondNum = 0;
+		}
+
+		function backspace(){
+		var originalText = displayBox.value;
+		var removedEdit = originalText.slice(0,-1);
+		displayBox.value = removedEdit;
+		}
+
+		function num1(){
+		var addedNum =  document.querySelector('#num1Button');
+		displayBox.value += addedNum.value;
+		}
+		
+		function num2(){
+		var addedNum =  document.querySelector('#num2Button');
+		displayBox.value += addedNum.value;
+		}
+
+		function num3(){
+		var addedNum =  document.querySelector('#num3Button');
+		displayBox.value += addedNum.value;
+		}
+		
+		function num4(){
+		var addedNum =  document.querySelector('#num4Button');
+		displayBox.value += addedNum.value;
+		}
+
+		function num5(){
+		var addedNum =  document.querySelector('#num5Button');
+		displayBox.value += addedNum.value;
+		}
+		
+		function num6(){
+		var addedNum =  document.querySelector('#num6Button');
+		displayBox.value += addedNum.value;
+		}
+
+		function num7(){
+		var addedNum =  document.querySelector('#num7Button');
+		displayBox.value += addedNum.value;
+		}
+		
+		function num8(){
+		var addedNum =  document.querySelector('#num7Button');
+		displayBox.value += addedNum.value;
+		}
+
+		function num9(){
+		var addedNum =  document.querySelector('#num9Button');
+		displayBox.value += addedNum.value;
+		}
+		
+		function num0(){
+		var addedNum =  document.querySelector('#num0Button');
+		displayBox.value += addedNum.value;
+		}
+
+		
+		function addNumbers(){
+				if(firstAttempt){
+					firstNum = Number(displayBox.value);
+					operates = '+';
+					firstAttempt = false;
+					displayBox.value='';
+				}else{	
+					secondNum = Number(displayBox.value);
+					displayBox.value='';
+					totalNum = findOperator(operates);
+					operates = '+';
+					firstNum = totalNum;
+				}
+		}
+		
+		function minusNumbers(){
+				if(firstAttempt){
+					firstNum = Number(displayBox.value);
+					operates = '-';
+					firstAttempt = false;
+					displayBox.value='';
+				}else{	
+					secondNum = Number(displayBox.value);
+					displayBox.value='';
+					totalNum = findOperator(operates);
+					operates = '-';
+					firstNum = totalNum;
+				}
+		}
+		
+		function multiplyNumbers(){
+				if(firstAttempt){
+					firstNum = Number(displayBox.value);
+					operates = '*';
+					firstAttempt = false;
+					displayBox.value='';
+				}else{	
+					secondNum = Number(displayBox.value);
+					displayBox.value='';
+					totalNum = findOperator(operates);
+					operates = '*';
+					firstNum = totalNum;
+				}
+		}
+		
+		function divideNumbers(){
+				if(firstAttempt){
+					firstNum = Number(displayBox.value);
+					operates = '/';
+					firstAttempt = false;
+					displayBox.value='';
+				}else{	
+					secondNum = Number(displayBox.value);
+					displayBox.value='';
+					totalNum = findOperator(operates);
+					operates = '/';
+					firstNum = totalNum;
+				}
+		}
+		
+		function answer(){
+			secondNum = Number(displayBox.value);
+			displayBox.value = findOperator(operates);
+		}
+
+		function findOperator(oper){
+			var result = 0;
+			switch(oper){
+				case '+': result = firstNum + secondNum;
+				break;
+				case '-': result = firstNum - secondNum;
+				break;
+				case '*': result = firstNum * secondNum;
+				break;
+				case '/': result = firstNum / secondNum;
+				break;
+				default: result = 'error';
+				break;
+			}
+		return result;
+		}	
+	</script>
+</body>	
 </html>
 
